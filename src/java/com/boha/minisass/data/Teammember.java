@@ -33,7 +33,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "teammember")
 @NamedQueries({
-    @NamedQuery(name = "Teammember.findAll", query = "SELECT t FROM Teammember t"),
+    @NamedQuery(name = "Teammember.signin", query = "SELECT t FROM Teammember t WHERE t.email = :email AND t.pin = :pin"),
+       @NamedQuery(name = "Teammember.findAll", query = "SELECT t FROM Teammember t"),
     @NamedQuery(name = "Teammember.findByTeamMemberID", query = "SELECT t FROM Teammember t WHERE t.teamMemberID = :teamMemberID"),
     @NamedQuery(name = "Teammember.findByFirstName", query = "SELECT t FROM Teammember t WHERE t.firstName = :firstName"),
     @NamedQuery(name = "Teammember.findByLastName", query = "SELECT t FROM Teammember t WHERE t.lastName = :lastName"),
@@ -98,13 +99,19 @@ public class Teammember implements Serializable {
         this.teamMemberID = teamMemberID;
     }
 
-    public Teammember(Integer teamMemberID, String firstName, String lastName, Date dateRegistered, String pin) {
+    public Teammember(String teamMemberImage, Integer teamMemberID, String firstName, String lastName, String email, String cellphone, Date dateRegistered, String pin, Integer activeFlag) {
+        this.teamMemberImage = teamMemberImage;
         this.teamMemberID = teamMemberID;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.cellphone = cellphone;
         this.dateRegistered = dateRegistered;
         this.pin = pin;
+        this.activeFlag = activeFlag;
     }
+
+   
 
     public Integer getTeamMemberID() {
         return teamMemberID;

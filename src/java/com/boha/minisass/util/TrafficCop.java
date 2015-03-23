@@ -48,7 +48,7 @@ public class TrafficCop {
                     ur = dataUtil.addCountry(req.getCountry());
                     break;
                 case RequestDTO.ADD_EVALUATION:
-                    ur = dataUtil.addEvaluation(req.getEvaluation(),req.getInsectImages());
+                    ur = dataUtil.addEvaluation(req.getEvaluation(), req.getInsectImages());
                     break;
                 case RequestDTO.ADD_EVALUATION_SITE:
                     ur = dataUtil.addEvaluationSite(req.getEvaluationSite());
@@ -146,20 +146,23 @@ public class TrafficCop {
                     ur = listUtil.getRiverList();
                     break;
                 case RequestDTO.GET_DATA:
-                    ur = listUtil.getData();
+                    ur = listUtil.getData(req.getCountryCode());
                     break;
 
                 case RequestDTO.LIST_ALL_RIVER_TOWNS:
                     ur = listUtil.listRiverTownList();
                     break;
-
+                case RequestDTO.LIST_ALL_TOWNS_BY_COUNTRY:
+                    ur = listUtil.registrationData(req.getCountryCode());
+                    break;
                 default:
                     ur.setStatusCode(444);
                     ur.setMessage("#### Unknown Request");
                     logger.log(Level.SEVERE, "Couldn't find request,you fool");
                     break;
-
             }
+            
+            
         } catch (DataException e) {
             ur.setStatusCode(101);
             ur.setMessage("Data service failed to process your request");

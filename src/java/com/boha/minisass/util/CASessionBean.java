@@ -50,7 +50,7 @@ public class CASessionBean {
 
     public void sendMail(String email, String subject, String body) throws NamingException, MessagingException {
         log.log(Level.OFF, "Ignoring the email request: {0}\n{1}", new Object[]{subject, body});
-        if (ADMIN_EMAIL != null) {
+        if (ADMIN_EMAIL == null) {
             return;
         }
         long s = System.currentTimeMillis();

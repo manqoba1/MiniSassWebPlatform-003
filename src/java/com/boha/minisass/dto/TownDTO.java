@@ -19,10 +19,10 @@ public class TownDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer townID;
-    private String townName;
+    private String townName,provinceName,countryName;
     private Double latitude;
     private Double longitude;
-    private Integer provinceID;
+    private Integer provinceID,countryID;
     private List<RiverTownDTO> riverTownList = new ArrayList<>();
     private List<TeamDTO> teamList= new ArrayList<>();
 
@@ -35,6 +35,33 @@ public class TownDTO implements Serializable {
         this.provinceID = a.getProvince().getProvinceID();
         this.latitude = a.getLatitude();
         this.longitude = a.getLongitude();
+        provinceName = a.getProvince().getProvinceName();
+        countryName=a.getProvince().getCountry().getCountryName();
+        countryID =a.getProvince().getCountry().getCountryID();
+    }
+
+    public Integer getCountryID() {
+        return countryID;
+    }
+
+    public void setCountryID(Integer countryID) {
+        this.countryID = countryID;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public Integer getProvinceID() {

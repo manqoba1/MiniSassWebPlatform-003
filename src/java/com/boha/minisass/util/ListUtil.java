@@ -117,29 +117,36 @@ public class ListUtil {
         return resp;
     }
 
-    public ResponseDTO getData() {
+    public ResponseDTO getData(String code) {
         ResponseDTO resp = new ResponseDTO();
         resp.setCategoryList(getCategoryDTOs());
         resp.setCommentList(getCommentDTOs());
         resp.setConditionsList(getConditionsDTOs());
         resp.setInsectList(getInsectDTOs());
         resp.setRiverList(getRiverDTOs());
-        resp.setTownList(getTowns());
+        resp.setTownList(getTowns(code));
         return resp;
     }
-    
-    private List<TownDTO> getTowns() {
+
+    private List<TownDTO> getTowns(String code) {
         List<TownDTO> list = new ArrayList<>();
-        Query q = em.createNamedQuery("Town.findAll", Town.class);
+        Query q = em.createNamedQuery("Town.findTwonsByCountry", Town.class);
+        q.setParameter("code", code);
         List<Town> towns = q.getResultList();
         for (Town t : towns) {
             TownDTO dTO = new TownDTO(t);
-            for(Team tm:t.getTeamList()){
+            for (Team tm : t.getTeamList()) {
                 dTO.getTeamList().add(new TeamDTO(tm));
-            }                
+            }
             list.add(dTO);
         }
         return list;
+    }
+
+    public ResponseDTO registrationData(String code) {
+        ResponseDTO resp = new ResponseDTO();
+        resp.setTownList(getTowns(code));
+        return resp;
     }
 
     private List<RiverDTO> getRiverDTOs() {

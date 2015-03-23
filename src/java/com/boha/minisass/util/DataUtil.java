@@ -75,7 +75,7 @@ public class DataUtil {
         ResponseDTO resp = new ResponseDTO();
         GcmDeviceDTO dTO = new GcmDeviceDTO();
         try {
-            Query q = em.createNamedQuery("TeamMember.signin", Teammember.class);
+            Query q = em.createNamedQuery("Teammember.signin", Teammember.class);
             q.setParameter("email", email);
             q.setParameter("pin", pin);
             q.setMaxResults(1);
@@ -102,10 +102,10 @@ public class DataUtil {
             
             resp.setTeamMember(new TeamMemberDTO(cs));
             
-            resp.setCategoryList(listUtil.getData().getCategoryList());
+           /* resp.setCategoryList(listUtil.getData().getCategoryList());
             resp.setCommentList(listUtil.getData().getCommentList());
             resp.setConditionsList(listUtil.getData().getConditionsList());
-            resp.setInsectList(listUtil.getData().getInsectList());
+            resp.setInsectList(listUtil.getData().getInsectList());*/
             
         } catch (NoResultException e) {
             log.log(Level.WARNING, "Invalid login attempt: " + email + " pin: " + pin, e);
@@ -186,22 +186,22 @@ public class DataUtil {
         try {
             Team t = new Team();
             t.setTown(em.find(Town.class, team.getTownID()));
-            // t.setTeamImage(team.getTeamImage());
+            t.setTeamImage(team.getTeamImage());
             t.setTeamName(team.getTeamName());
             t.setDateRegistered(new Date());
-            
+            t.setTeamImage("upload");
             em.persist(t);
             em.flush();
             
             TeamDTO teamDTO = new TeamDTO(t);
-            
+            log.log(Level.SEVERE, "Team : {0}",t.getTeamID());
             if (team.getTeamMemberList() != null) {
                 
                 for (TeamMemberDTO tms : team.getTeamMemberList()) {
                     Teammember tm = new Teammember();
                     
                     tm.setTeam(em.find(Team.class, t.getTeamID()));
-                    
+                    tm.setTeamMemberImage("upload");
                     tm.setFirstName(tms.getFirstName());
                     tm.setLastName(tms.getLastName());
                     tm.setEmail(tms.getEmail());
@@ -846,8 +846,8 @@ public class DataUtil {
     public void addDevice(GcmDeviceDTO d) throws DataException {
         try {
             Gcmdevice g = new Gcmdevice();
-            g.setTeam(em.find(Team.class, d.getTeam().getTeamID()));
-            g.setTeamMember(em.find(Teammember.class, d.getTeamMember().getTeamMemberID()));
+            g.setTeam(em.find(Team.class, d.getTeamID()));
+            g.setTeamMember(em.find(Teammember.class, d.getTeamMemberID()));
             
             g.setDateRegistered(new Date());
             g.setManufacturer(d.getManufacturer());

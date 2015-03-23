@@ -26,14 +26,14 @@ import java.util.List;
  *
  * @author aubreyM
  */
-public class RequestDTO implements Serializable{
+public class RequestDTO implements Serializable {
 
     private Integer requestType;
     private String email, password;
     private Integer countryID, categoryID, commentID, conditionsID, evaluationID, evaluationInsectID,
             evaluationCommentID, evaluationSiteID, insectID, provinceID, riverID, teamID, townID, teamMemberID,
             evaluationImageID;
-
+    private String countryCode;
     public static final int REGISTER_TEAM = 1,
             GENERATE_TEAM = 100,
             GENERATE_RIVER = 101,
@@ -88,7 +88,8 @@ public class RequestDTO implements Serializable{
             LIST_EVALUATIONS = 70,
             LIST_RIVERS = 71,
             GET_DATA = 72,
-            LIST_ALL_RIVER_TOWNS=73;
+            LIST_ALL_RIVER_TOWNS = 73,
+            LIST_ALL_TOWNS_BY_COUNTRY = 74;
 
     private EvaluationDTO evaluation;
     private CategoryDTO category;
@@ -125,6 +126,14 @@ public class RequestDTO implements Serializable{
     public static final String EVALUATION_IMAGE_DIR = "evaluation_images";
     public static final String RIVER_DIR = "river";
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
     public List<InsectImageDTO> getInsectImages() {
         return insectImages;
     }
@@ -133,7 +142,6 @@ public class RequestDTO implements Serializable{
         this.insectImages = insectImages;
     }
 
-    
     public CategoryDTO getCategory() {
         return category;
     }

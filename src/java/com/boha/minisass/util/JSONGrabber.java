@@ -3,9 +3,7 @@ package com.boha.minisass.util;
 import com.boha.minisass.dto.EvaluationDTO;
 import com.boha.minisass.transfer.RequestDTO;
 import com.google.gson.Gson;
-import com.twilio.sdk.TwilioRestClient;
-import com.twilio.sdk.TwilioRestException;
-import com.twilio.sdk.resource.factory.MessageFactory;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,10 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import com.twilio.sdk.resource.factory.MessageFactory;
-import com.twilio.sdk.resource.instance.Message;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+
 
 /**
  *
@@ -71,7 +66,7 @@ public class JSONGrabber {
         } else {
             System.out.println("Not Unique");
         }
-        sendSMS();
+        //sendSMS();
     }
 
     private static void printOdd() {
@@ -84,7 +79,7 @@ public class JSONGrabber {
         }
     }
 
-    private static void sendSMS() {
+  /*  private static void sendSMS() {
         try {
             TwilioRestClient client = new TwilioRestClient("ACb90cf3b5d65901e089504ca8f1c688ff", "782c267eaa0f112ecfab966c801b2a88");
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -98,7 +93,7 @@ public class JSONGrabber {
         } catch (TwilioRestException e) {
             System.out.println(e.getErrorMessage());
         }
-    }
+    }*/
 
     private static boolean checkUnique(String word) {
         char[] charWord = word.toLowerCase().toCharArray();

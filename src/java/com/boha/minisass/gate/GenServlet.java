@@ -62,7 +62,7 @@ public class GenServlet extends HttpServlet {
                     ur = generateUtil.generateRiver(req.getRiver());
                     break;
                 case RequestDTO.GET_DATA:
-                    ur = listUtil.getData();
+                    ur = listUtil.getData(req.getCountryCode());
                     break;
                 default:
                     ur.setStatusCode(444);
