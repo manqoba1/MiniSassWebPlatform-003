@@ -71,7 +71,7 @@ public class DataUtil {
     }
     
     public ResponseDTO login(GcmDeviceDTO d, String email,
-            String pin, ListUtil listUtil) throws DataException {
+            String pin) throws DataException {
         ResponseDTO resp = new ResponseDTO();
         GcmDeviceDTO dTO = new GcmDeviceDTO();
         try {
@@ -194,7 +194,7 @@ public class DataUtil {
             em.flush();
             
             TeamDTO teamDTO = new TeamDTO(t);
-            log.log(Level.SEVERE, "Team : {0}",t.getTeamID());
+            //log.log(Level.SEVERE, "Team : {0}",t.getTeamID());
             if (team.getTeamMemberList() != null) {
                 
                 for (TeamMemberDTO tms : team.getTeamMemberList()) {
@@ -208,7 +208,7 @@ public class DataUtil {
                     tm.setCellphone(tms.getCellphone());
                     tm.setActiveFlag(tms.getActiveFlag());
                     tm.setDateRegistered(new Date());
-                    tm.setPin(tms.getPin());
+                    tm.setPin(getRandomPin());
                     
                     em.persist(tm);
                     em.flush();

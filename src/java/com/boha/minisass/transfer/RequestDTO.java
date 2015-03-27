@@ -52,7 +52,8 @@ public class RequestDTO implements Serializable {
 
     public static final int ADD_COUNTRY = 21,
             ADD_PROVINCE = 22,
-            ADD_TOWN = 23;
+            ADD_TOWN = 23,
+            ADD_GCM_DEVICE = 75;
 
     public static final int UPDATE_RIVER = 30,
             UPDATE_RIVER_TOWN = 31,

@@ -88,6 +88,6 @@ public class CASessionBean {
         }
     }
     public static final String ADMIN_EMAIL = "snpeace.sifiso@gmail.com";
-    public static final String ADMIN_PASSWD = "0835602943";
+    public static final String ADMIN_PASSWD = "0125602943";
     private static final Logger log = Logger.getLogger("CASessionBean");
 }

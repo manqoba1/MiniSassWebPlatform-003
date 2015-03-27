@@ -59,7 +59,7 @@ public class CloudMessagingRegistrar {
             StringBuilder sb = new StringBuilder();
             sb.append("Google Cloud Messaging device registration failed.\n");
             sb.append("Error Code Name: ").append(error);
-            platformUtil.addErrorStore(909, sb.toString(), "Cloud Messaging Service");
+           // platformUtil.addErrorStore(909, sb.toString(), "Cloud Messaging Service");
         } else {
             // we have SUCCESS!!
             resp.setStatusCode(0);
@@ -69,7 +69,7 @@ public class CloudMessagingRegistrar {
             StringBuilder sb = new StringBuilder();
             sb.append(resp.getMessage()).append("\n");
             sb.append("This device can now participate in push messaging");
-            platformUtil.addErrorStore(0, sb.toString(), "Cloud Messaging Service");
+           // platformUtil.addErrorStore(0, sb.toString(), "Cloud Messaging Service");
             return resp;
         }
 

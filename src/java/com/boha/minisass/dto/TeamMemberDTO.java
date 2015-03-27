@@ -41,6 +41,7 @@ public class TeamMemberDTO implements Serializable {
         this.lastName = a.getLastName();
         this.dateRegistered = a.getDateRegistered().getTime();
         this.pin = a.getPin();
+        this.email = a.getEmail();
         this.activeFlag = a.getActiveFlag();
         this.teamID = a.getTeam().getTeamID();
         teamMemberImage = a.getTeamMemberImage();

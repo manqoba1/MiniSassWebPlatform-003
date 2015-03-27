@@ -41,6 +41,9 @@ public class TrafficCop {
                 case RequestDTO.REGISTER_TEAM_MEMBER:
                     ur = dataUtil.registerTeamMember(req.getTeamMember());
                     break;
+                     case RequestDTO.SIGN_IN_MEMBER:
+                    ur = dataUtil.login(req.getGcmDevice(),req.getEmail(),req.getPassword());
+                    break;
                 case RequestDTO.ADD_COMMENT:
                     ur = dataUtil.addComment(req.getComment());
                     break;
@@ -155,24 +158,26 @@ public class TrafficCop {
                 case RequestDTO.LIST_ALL_TOWNS_BY_COUNTRY:
                     ur = listUtil.registrationData(req.getCountryCode());
                     break;
+                case RequestDTO.ADD_GCM_DEVICE:
+                    dataUtil.addDevice(req.getGcmDevice());
+                    break;
                 default:
                     ur.setStatusCode(444);
                     ur.setMessage("#### Unknown Request");
                     logger.log(Level.SEVERE, "Couldn't find request,you fool");
                     break;
             }
-            
-            
+
         } catch (DataException e) {
             ur.setStatusCode(101);
             ur.setMessage("Data service failed to process your request");
             logger.log(Level.SEVERE, "Database related failure", e);
-            addErrorStore(19, e.getDescription(), "TrafficCop");
+            //  addErrorStore(19, e.getDescription(), "TrafficCop");
         } catch (Exception e) {
             ur.setStatusCode(102);
             ur.setMessage("Server process failed to process your request");
             logger.log(Level.SEVERE, "Generic server related failure", e);
-            addErrorStore(19, "Server Error \n" + dataUtil.getErrorString(e), "TrafficCop");
+            // addErrorStore(19, "Server Error \n" + dataUtil.getErrorString(e), "TrafficCop");
         }
         if (ur.getStatusCode() == null) {
             ur.setStatusCode(0);
