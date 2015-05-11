@@ -57,7 +57,7 @@ public class Team implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateRegistered")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateRegistered;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<Gcmdevice> gcmdeviceList;
