@@ -54,7 +54,7 @@ public class Errorstore implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateOccured")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateOccured;
     @Basic(optional = false)
     @NotNull

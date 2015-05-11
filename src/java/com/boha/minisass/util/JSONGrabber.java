@@ -8,12 +8,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.MathContext;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-
+import java.util.stream.IntStream;
 
 /**
  *
@@ -51,22 +50,33 @@ public class JSONGrabber {
         System.out.println("JSON created\n" + json);
         JSONGrabber grabber = new JSONGrabber();
 
-        int[] A = {10000000, 900000000, 300000000, -100000000, 500000000};
-        //System.out.println("fhds" + grabber.run());
-        String str1 = "sifiso", str2 = "fisos";//"Sifiso","sfosii"
-        if (checkAnagram(str1, str2)) {
-            System.out.println(str2 + " is anagram of " + str1);
-        } else {
-            System.out.println("Strings are not anagrams.");
-        }
+        /*int[] A = {10000000, 900000000, 300000000, -100000000, 500000000};
+         //System.out.println("fhds" + grabber.run());
+         String str1 = "sifiso", str2 = "fisos";//"Sifiso","sfosii"
+         if (checkAnagram(str1, str2)) {
+         System.out.println(str2 + " is anagram of " + str1);
+         } else {
+         System.out.println("Strings are not anagrams.");
+         }
 
-        // printOdd();
-        if (checkUnique("si")) {
-            System.out.println("Unique");
-        } else {
-            System.out.println("Not Unique");
-        }
+         // printOdd();
+         if (checkUnique("si")) {
+         System.out.println("Unique");
+         } else {
+         System.out.println("Not Unique");
+         }*/
         //sendSMS();
+        int[] A = {-1, 3, -4, -5, 1, -6, 2, 1};
+        /*A[0] = ;
+         A[1] = 3;
+         A[2] = -4;
+         A[3] = 5;
+         A[4] = 1;
+         A[5] = -6;
+         A[6] = 2;
+         A[7] = 1;*/
+
+        System.out.println(equi(A) + "");
     }
 
     private static void printOdd() {
@@ -79,22 +89,21 @@ public class JSONGrabber {
         }
     }
 
-  /*  private static void sendSMS() {
-        try {
-            TwilioRestClient client = new TwilioRestClient("ACb90cf3b5d65901e089504ca8f1c688ff", "782c267eaa0f112ecfab966c801b2a88");
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("Body", "Jenny please?! I love you <3"));
-            params.add(new BasicNameValuePair("To", "+27610189037"));
-            params.add(new BasicNameValuePair("From", "+27875503938"));
+    /*  private static void sendSMS() {
+     try {
+     TwilioRestClient client = new TwilioRestClient("ACb90cf3b5d65901e089504ca8f1c688ff", "782c267eaa0f112ecfab966c801b2a88");
+     List<NameValuePair> params = new ArrayList<NameValuePair>();
+     params.add(new BasicNameValuePair("Body", "Jenny please?! I love you <3"));
+     params.add(new BasicNameValuePair("To", "+27610189037"));
+     params.add(new BasicNameValuePair("From", "+27875503938"));
 
-            MessageFactory messageFactory = client.getAccount().getMessageFactory();
-            Message message = messageFactory.create(params);
-            System.out.println(message.getSid());
-        } catch (TwilioRestException e) {
-            System.out.println(e.getErrorMessage());
-        }
-    }*/
-
+     MessageFactory messageFactory = client.getAccount().getMessageFactory();
+     Message message = messageFactory.create(params);
+     System.out.println(message.getSid());
+     } catch (TwilioRestException e) {
+     System.out.println(e.getErrorMessage());
+     }
+     }*/
     private static boolean checkUnique(String word) {
         char[] charWord = word.toLowerCase().toCharArray();
 
@@ -262,6 +271,48 @@ public class JSONGrabber {
         }
 
         System.out.println("Done");
+    }
+
+    public static int solution(int[] a) {
+        int result = -1;
+
+        long[] b = IntStream.range(0, a.length).mapToLong(i -> a[i]).toArray();
+        long sum = Arrays.stream(b).sum();
+
+        long left = 0;
+        long right = 0;
+
+        for (int i = 0; i < b.length; i++) {
+            long j = b[i];
+            left += j;
+            right = sum - left;
+            if (left - j == right && (0 <= i && i < b.length)) {
+//System.out.println("index " + i);
+                result = i;
+                //break;
+            }
+        }
+
+        return result;
+
+    }
+
+    public static int equi(int[] A) {
+        long sum = 0;
+        long leftSum = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            leftSum += A[i];
+        }
+        for (int i = 0; i < A.length; i++) {
+            if (sum == leftSum - A[i]) {
+                return i;
+            }
+            sum += A[i];
+            leftSum -= A[i];
+        }
+        return -1;
+
     }
 }
 

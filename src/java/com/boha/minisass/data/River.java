@@ -43,6 +43,11 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "River.findByEndLongitude", query = "SELECT r FROM River r WHERE r.endLongitude = :endLongitude"),
     @NamedQuery(name = "River.findByDateRegistered", query = "SELECT r FROM River r WHERE r.dateRegistered = :dateRegistered")})
 public class River implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "imageUri")
+    private String imageUri;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "river")
     private List<Errorstoreandroid> errorstoreandroidList;
     private static final long serialVersionUID = 1L;
@@ -215,6 +220,14 @@ public class River implements Serializable {
 
     public void setErrorstoreandroidList(List<Errorstoreandroid> errorstoreandroidList) {
         this.errorstoreandroidList = errorstoreandroidList;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
     
 }

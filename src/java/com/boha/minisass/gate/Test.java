@@ -33,11 +33,9 @@ public class Test extends HttpServlet {
 
     @EJB
     ListUtil listUtil;
-    
-    
-    
 
     Gson gson = new Gson();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
@@ -62,7 +60,7 @@ public class Test extends HttpServlet {
                     ur = dataUtil.addCountry(req.getCountry());
                     break;
                 case RequestDTO.ADD_EVALUATION:
-                    ur = dataUtil.addEvaluation(req.getEvaluation(),req.getInsectImages());
+                    ur = dataUtil.addEvaluation(req.getEvaluation(), req.getInsectImages());
                     break;
                 case RequestDTO.ADD_EVALUATION_SITE:
                     ur = dataUtil.addEvaluationSite(req.getEvaluationSite());
@@ -100,7 +98,7 @@ public class Test extends HttpServlet {
                 case RequestDTO.LIST_ALL_PROVINCES:
                     ur = listUtil.getAllProvince();
                     break;
-                     
+
                 case RequestDTO.LIST_PROVINCE_BY_COUNTRY:
                     ur = listUtil.getProvinceByCountry(req.getCountryID());
                     break;
@@ -129,7 +127,7 @@ public class Test extends HttpServlet {
                 case RequestDTO.UPDATE_EVALUATION_IMAGE:
                     ur = dataUtil.updateEvaluationImage(req.getEvaluationImage());
                     break;
-                    
+
                 case RequestDTO.LIST_EVALUATION_BY_TEAM_MEMBER:
                     ur = listUtil.getEvaluationByTeamMember(req.getTeamMemberID());
                     break;
@@ -166,14 +164,11 @@ public class Test extends HttpServlet {
                 case RequestDTO.LIST_RIVERS:
                     ur = listUtil.getRiverList();
                     break;
-               
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+
+                case RequestDTO.GET_DATA:
+                    ur = listUtil.getData(req.getCountryCode());
+                    break;
+
                 default:
                     ur.setStatusCode(444);
                     ur.setMessage("#### Unknown Request");
@@ -252,6 +247,6 @@ public class Test extends HttpServlet {
         }
         return re;
     }
-    
+
     static final Logger log = Logger.getLogger(Test.class.getSimpleName());
 }

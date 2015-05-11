@@ -56,7 +56,7 @@ public class Evaluationimage implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateTaken")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateTaken;
     @Basic(optional = false)
     @NotNull

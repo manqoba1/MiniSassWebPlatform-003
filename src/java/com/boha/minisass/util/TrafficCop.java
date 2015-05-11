@@ -52,6 +52,7 @@ public class TrafficCop {
                     break;
                 case RequestDTO.ADD_EVALUATION:
                     ur = dataUtil.addEvaluation(req.getEvaluation(), req.getInsectImages());
+                    //dataUtil.textDate(req.getEvaluation());
                     break;
                 case RequestDTO.ADD_EVALUATION_SITE:
                     ur = dataUtil.addEvaluationSite(req.getEvaluationSite());
@@ -161,6 +162,7 @@ public class TrafficCop {
                 case RequestDTO.ADD_GCM_DEVICE:
                     dataUtil.addDevice(req.getGcmDevice());
                     break;
+               
                 default:
                     ur.setStatusCode(444);
                     ur.setMessage("#### Unknown Request");

@@ -67,7 +67,7 @@ public class Gcmdevice implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateRegistered")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateRegistered;
     @Size(max = 255)
     @Column(name = "serialNumber")

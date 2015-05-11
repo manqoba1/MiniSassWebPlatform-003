@@ -50,7 +50,7 @@ public class Errorstoreandroid implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "errorDate")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date errorDate;
     @Basic(optional = false)
     @NotNull

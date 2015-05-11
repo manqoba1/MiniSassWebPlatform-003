@@ -60,7 +60,7 @@ public class Evaluationsite implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateRegistered")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateRegistered;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluationSite")
     private List<Evaluation> evaluationList;

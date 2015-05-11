@@ -49,7 +49,7 @@ public class Insectimage implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateRegistered")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateRegistered;
     @JoinColumn(name = "insectID", referencedColumnName = "insectID")
     @ManyToOne(optional = false)

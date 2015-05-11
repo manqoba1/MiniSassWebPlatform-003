@@ -25,6 +25,7 @@ public class RiverDTO implements Serializable {
     private Double endLatitude;
     private Double endLongitude;
     private long dateRegistered;
+    private String imageUri;
     private List<RiverTownDTO> riverTownList = new ArrayList<>();
     private List<EvaluationSiteDTO> evaluationSiteList = new ArrayList<>();
     private List<ErrorStoreAndroidDTO> errorstoreandroidList = new ArrayList<>();
@@ -50,6 +51,15 @@ public class RiverDTO implements Serializable {
         endLongitude = a.getEndLongitude();
         originCountry = new CountryDTO(a.getOriginCountry());
         endCountry = new CountryDTO(a.getEndCountry());
+        imageUri = a.getImageUri();
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     public List<ErrorStoreAndroidDTO> getErrorstoreandroidList() {

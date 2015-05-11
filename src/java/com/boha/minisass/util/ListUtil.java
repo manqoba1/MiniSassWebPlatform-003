@@ -125,6 +125,7 @@ public class ListUtil {
         resp.setInsectList(getInsectDTOs());
         resp.setRiverList(getRiverDTOs());
         resp.setTownList(getTowns(code));
+        resp.setTeamList(getTeamList().getTeamList());
         return resp;
     }
 
