@@ -28,8 +28,6 @@ public class JSONGrabber {
 
         EvaluationDTO e = new EvaluationDTO();
         e.setComment("water is clean");
-        e.setLatitude(0.2);
-        e.setLongitude(0.4);
         e.setOxygen(0.6);
         e.setPH(0.8);
         e.setRemarks("ggggggg");

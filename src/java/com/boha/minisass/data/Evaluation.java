@@ -43,10 +43,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Evaluation.findByPH", query = "SELECT e FROM Evaluation e WHERE e.pH = :pH"),
     @NamedQuery(name = "Evaluation.findByWaterTemperature", query = "SELECT e FROM Evaluation e WHERE e.waterTemperature = :waterTemperature"),
     @NamedQuery(name = "Evaluation.findByOxygen", query = "SELECT e FROM Evaluation e WHERE e.oxygen = :oxygen"),
-    @NamedQuery(name = "Evaluation.findByWaterClarity", query = "SELECT e FROM Evaluation e WHERE e.waterClarity = :waterClarity"),
-    @NamedQuery(name = "Evaluation.findByLatitude", query = "SELECT e FROM Evaluation e WHERE e.latitude = :latitude"),
-    @NamedQuery(name = "Evaluation.findByLongitude", query = "SELECT e FROM Evaluation e WHERE e.longitude = :longitude")})
+    @NamedQuery(name = "Evaluation.findByWaterClarity", query = "SELECT e FROM Evaluation e WHERE e.waterClarity = :waterClarity")})
 public class Evaluation implements Serializable {
+
     @JoinColumn(name = "conditionsID", referencedColumnName = "conditionsID")
     @ManyToOne
     private Conditions conditions;
@@ -76,14 +75,6 @@ public class Evaluation implements Serializable {
     private Double oxygen;
     @Column(name = "waterClarity")
     private Double waterClarity;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "latitude")
-    private double latitude;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "longitude")
-    private double longitude;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluation")
     private List<Evaluationimage> evaluationimageList;
     @JoinColumn(name = "teamMemberID", referencedColumnName = "teamMemberID")
@@ -92,7 +83,7 @@ public class Evaluation implements Serializable {
     @JoinColumn(name = "evaluationSiteID", referencedColumnName = "evaluationSiteID")
     @ManyToOne(optional = false)
     private Evaluationsite evaluationSite;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluation")
     private List<Evaluationinsect> evaluationinsectList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluation")
@@ -105,11 +96,10 @@ public class Evaluation implements Serializable {
         this.evaluationID = evaluationID;
     }
 
-    public Evaluation(Integer evaluationID, Date evaluationDate, double latitude, double longitude) {
+    public Evaluation(Integer evaluationID, Date evaluationDate) {
         this.evaluationID = evaluationID;
         this.evaluationDate = evaluationDate;
-        this.latitude = latitude;
-        this.longitude = longitude;
+
     }
 
     public Integer getEvaluationID() {
@@ -176,22 +166,6 @@ public class Evaluation implements Serializable {
         this.waterClarity = waterClarity;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public List<Evaluationimage> getEvaluationimageList() {
         return evaluationimageList;
     }
@@ -232,8 +206,6 @@ public class Evaluation implements Serializable {
         this.conditions = conditions;
     }
 
-   
-
     public List<Evaluationinsect> getEvaluationinsectList() {
         return evaluationinsectList;
     }
@@ -249,8 +221,6 @@ public class Evaluation implements Serializable {
     public void setEvaluationcommentList(List<Evaluationcomment> evaluationcommentList) {
         this.evaluationcommentList = evaluationcommentList;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -277,6 +247,4 @@ public class Evaluation implements Serializable {
         return "com.boha.minisass.data.Evaluation[ evaluationID=" + evaluationID + " ]";
     }
 
-   
-    
 }

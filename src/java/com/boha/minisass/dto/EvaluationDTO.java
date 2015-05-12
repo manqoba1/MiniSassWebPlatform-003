@@ -19,15 +19,13 @@ public class EvaluationDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer evaluationID, teamMemberID, conditionsID, evaluationSiteID;
     private long evaluationDate;
-    private String comment, conditionName,teamName;
+    private String comment, conditionName, teamName;
     private Double score;
     private Double pH;
     private String remarks;
     private Double waterTemperature;
     private Double oxygen;
     private Double waterClarity;
-    private Double latitude;
-    private Double longitude;
     private List<EvaluationImageDTO> evaluationImageList = new ArrayList<>();
     private TeamMemberDTO teamMember;
     private EvaluationSiteDTO evaluationSite;
@@ -41,8 +39,6 @@ public class EvaluationDTO implements Serializable {
     public EvaluationDTO(Evaluation a) {
         this.evaluationID = a.getEvaluationID();
         this.evaluationDate = a.getEvaluationDate().getTime();
-        this.latitude = a.getLatitude();
-        this.longitude = a.getLongitude();
         this.score = a.getScore();
         this.pH = a.getPH();
         this.remarks = a.getRemarks();
@@ -169,22 +165,6 @@ public class EvaluationDTO implements Serializable {
 
     public void setWaterClarity(Double waterClarity) {
         this.waterClarity = waterClarity;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
     }
 
     public List<EvaluationImageDTO> getEvaluationImageList() {

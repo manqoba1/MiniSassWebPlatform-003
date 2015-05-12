@@ -192,7 +192,6 @@ public class DataUtil {
             t.setTeamImage(team.getTeamImage());
             t.setTeamName(team.getTeamName());
             t.setDateRegistered(new Date());
-
             em.persist(t);
             em.flush();
 
@@ -204,6 +203,7 @@ public class DataUtil {
                     Teammember tm = new Teammember();
 
                     tm.setTeam(em.find(Team.class, t.getTeamID()));
+                    tm.setTeamMemberImage("upload");
                     tm.setFirstName(tms.getFirstName());
                     tm.setLastName(tms.getLastName());
                     tm.setEmail(tms.getEmail());
@@ -587,8 +587,6 @@ public class DataUtil {
             log.log(Level.WARNING, "Test{0}", 1);
             e.setConditions(em.find(Conditions.class, evaluation.getConditionsID()));
             log.log(Level.WARNING, "Test{0}", 2);
-            e.setLatitude(evaluation.getLatitude());
-            e.setLongitude(evaluation.getLongitude());
             e.setOxygen(evaluation.getOxygen());
             e.setPH(evaluation.getPH());
             e.setRemarks(evaluation.getRemarks());
