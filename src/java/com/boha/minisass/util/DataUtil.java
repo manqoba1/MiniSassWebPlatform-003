@@ -192,7 +192,7 @@ public class DataUtil {
             t.setTeamImage(team.getTeamImage());
             t.setTeamName(team.getTeamName());
             t.setDateRegistered(new Date());
-            t.setTeamImage("upload");
+
             em.persist(t);
             em.flush();
 
@@ -204,7 +204,6 @@ public class DataUtil {
                     Teammember tm = new Teammember();
 
                     tm.setTeam(em.find(Team.class, t.getTeamID()));
-                    tm.setTeamMemberImage("upload");
                     tm.setFirstName(tms.getFirstName());
                     tm.setLastName(tms.getLastName());
                     tm.setEmail(tms.getEmail());

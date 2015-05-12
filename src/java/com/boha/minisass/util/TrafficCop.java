@@ -41,8 +41,8 @@ public class TrafficCop {
                 case RequestDTO.REGISTER_TEAM_MEMBER:
                     ur = dataUtil.registerTeamMember(req.getTeamMember());
                     break;
-                     case RequestDTO.SIGN_IN_MEMBER:
-                    ur = dataUtil.login(req.getGcmDevice(),req.getEmail(),req.getPassword());
+                case RequestDTO.SIGN_IN_MEMBER:
+                    ur = dataUtil.login(req.getGcmDevice(), req.getEmail(), req.getPassword());
                     break;
                 case RequestDTO.ADD_COMMENT:
                     ur = dataUtil.addComment(req.getComment());
@@ -162,7 +162,7 @@ public class TrafficCop {
                 case RequestDTO.ADD_GCM_DEVICE:
                     dataUtil.addDevice(req.getGcmDevice());
                     break;
-               
+
                 default:
                     ur.setStatusCode(444);
                     ur.setMessage("#### Unknown Request");

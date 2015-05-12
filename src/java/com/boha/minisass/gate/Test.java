@@ -53,6 +53,9 @@ public class Test extends HttpServlet {
                 case RequestDTO.REGISTER_TEAM_MEMBER:
                     ur = dataUtil.registerTeamMember(req.getTeamMember());
                     break;
+                case RequestDTO.SIGN_IN_MEMBER:
+                    ur = dataUtil.login(req.getGcmDevice(), req.getEmail(), req.getPassword());
+                    break;
                 case RequestDTO.ADD_COMMENT:
                     ur = dataUtil.addComment(req.getComment());
                     break;

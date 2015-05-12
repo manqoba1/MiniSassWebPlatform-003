@@ -59,7 +59,7 @@ public class Evaluation implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "evaluationDate")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date evaluationDate;
     @Lob
     @Size(max = 65535)
